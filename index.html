@@ -3,9 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Calculator</title>
 </head>
 <body>
+    <div id="calculatorBody">
+        <div id="screen"></div>
+
+        <div id="numPad">
+            <div class="column">
+                <button class="padButton">7</button>
+                <button class="padButton">4</button>
+                <button class="padButton">1</button>
+                <button class="padButton">.</button>
+            </div>
+            <div class="column">
+                <button class="padButton">8</button>
+                <button class="padButton">5</button>
+                <button class="padButton">2</button>
+                <button class="padButton">0</button>
+            </div>
+            <div class="column">
+                <button class="padButton">9</button>
+                <button class="padButton">6</button>
+                <button class="padButton">3</button>
+                <button class="padButton" id="equalsButton">=</button>
+            </div>
+            <div class="column">
+                <button class="padButton" id="deleteButton">&larr;</button>
+                <button class="padButton" id="clearButton">C</button>
+                <button class="padButton">/</button>
+                <button class="padButton">*</button>
+                <button class="padButton">-</button>
+                <button class="padButton">+</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
