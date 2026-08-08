@@ -26,7 +26,7 @@ body {
     border-radius: 15px;
     overflow: scroll;
     display: flex;
-    align-items: center;
+    align-items: safe center;
     background-color: rgb(249, 203, 212);
 }
 
@@ -35,6 +35,8 @@ p {
     font-family:'Courier New', Courier, monospace;
     margin: 15px;
     font-weight: bold;
+    min-width: 0;
+    overflow-wrap: break-word;
 }
 
 #numPad {

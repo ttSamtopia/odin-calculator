@@ -7,6 +7,7 @@ const domNumPad = document.querySelector("#numPad")
 let stringNum1 = "";
 let stringNum2 = "";
 let stringOperator = "";
+let lastUsedInput = "";
 
 const calc = {
     operate (num1 = "0", operator = "+", num2 = "0") {
@@ -50,11 +51,14 @@ const calc = {
         } else if (NUMBER_INPUTS.includes(input)) {
             if (!operatorPresent) {
                 if (input == "." && stringNum1.includes(".")) return;
+                if (stringNum1.length >= 20) return;
+                if (lastUsedInput == "=") stringNum1 = "";
                 stringNum1 += input;
                 calc.updateDisplay(stringNum1);
                 return;
             } else {
                 if (input == "." && stringNum2.includes(".")) return;
+                if (stringNum2.length >= 20) return;
                 stringNum2 += input;
                 calc.updateDisplay(stringNum1, stringOperator, stringNum2);
                 return;
@@ -87,7 +91,7 @@ const calc = {
             stringOperator = "";
             calc.updateDisplay();
             return;
-        } else if (input == "&larr;") {
+        } else if (input == "←") {
             if (num2Present) {
                 stringNum2 = stringNum2.slice(0, -1);
                 calc.updateDisplay(stringNum1, stringOperator, stringNum2);
@@ -108,4 +112,6 @@ const calc = {
 domNumPad.addEventListener("click", (e) => {
     let input = e.target.textContent;
     calc.handleInput(input);
+    lastUsedInput = input;
+    return;
 })
