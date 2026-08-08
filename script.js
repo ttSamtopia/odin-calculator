@@ -2,6 +2,7 @@ const NUMBER_INPUTS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
 const OPERATOR_INPUTS = ["+", "-", "*", "/"];
 
 const domDisplayArray = document.querySelectorAll("span");
+const domNumPad = document.querySelector("#numPad")
 
 let stringNum1 = "";
 let stringNum2 = "";
@@ -103,3 +104,8 @@ const calc = {
         }
     }
 };
+
+domNumPad.addEventListener("click", (e) => {
+    let input = e.target.textContent;
+    calc.handleInput(input);
+})
