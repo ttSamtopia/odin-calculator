@@ -21,3 +21,9 @@ const calc = {
     multi: (num1, num2) => num1 * num2,
     div: (num1, num2) => num1 / num2
 };
+
+let numString1;
+let numString2;
+let operator;
+
+console.log(calc.operate(numString1, operator, numString2))
