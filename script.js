@@ -118,6 +118,7 @@ domNumPad.addEventListener("click", (e) => {
 });
 
 document.addEventListener("keydown", (e) => {
+    e.preventDefault()
     let input = e.key;
     calc.handleInput(input);
     lastUsedInput = input;
