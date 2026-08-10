@@ -24,7 +24,7 @@ body {
     flex: 3 1 0;
     border: rgb(138, 63, 101) solid 3px;
     border-radius: 15px;
-    overflow: scroll;
+    overflow: auto;
     display: flex;
     align-items: safe center;
     background-color: rgb(249, 203, 212);
