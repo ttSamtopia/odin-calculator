@@ -1,4 +1,4 @@
-const NUMBER_INPUTS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+const NUMBER_INPUTS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", ","];
 const OPERATOR_INPUTS = ["+", "-", "*", "/"];
 
 const domDisplayArray = document.querySelectorAll("span");
@@ -49,10 +49,11 @@ const calc = {
         if (stringNum1 === "Error, please clear" && input !== "C") {
             return;
         } else if (NUMBER_INPUTS.includes(input)) {
+            if (input === ",") input = ".";
             if (!operatorPresent) {
                 if (input === "." && stringNum1.includes(".")) return;
                 if (stringNum1.length >= 20) return;
-                if (lastUsedInput === "=") stringNum1 = "";
+                if (lastUsedInput === "=" || lastUsedInput === "Enter") stringNum1 = "";
                 stringNum1 += input;
                 calc.updateDisplay(stringNum1);
                 return;
@@ -77,7 +78,7 @@ const calc = {
                 calc.updateDisplay(stringNum1, stringOperator)
                 return;
             }
-        } else if (input === "=") {
+        } else if (input === "=" || input === "Enter") {
             if (num1Present && operatorPresent && num2Present) {
                 stringNum1 = calc.operate(stringNum1, stringOperator, stringNum2);
                 stringOperator = "";
@@ -85,13 +86,13 @@ const calc = {
                 calc.updateDisplay(stringNum1)
                 return;
             }
-        } else if (input === "C") {
+        } else if (input.toLowerCase() === "c") {
             stringNum1 = "";
             stringNum2 = "";
             stringOperator = "";
             calc.updateDisplay();
             return;
-        } else if (input === "←") {
+        } else if (input === "←" || input === "Backspace") {
             if (num2Present) {
                 stringNum2 = stringNum2.slice(0, -1);
                 calc.updateDisplay(stringNum1, stringOperator, stringNum2);
@@ -114,4 +115,11 @@ domNumPad.addEventListener("click", (e) => {
     calc.handleInput(input);
     lastUsedInput = input;
     return;
-})
+});
+
+document.addEventListener("keydown", (e) => {
+    let input = e.key;
+    calc.handleInput(input);
+    lastUsedInput = input;
+    return;
+});
