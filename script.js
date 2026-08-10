@@ -31,7 +31,7 @@ const calc = {
     sub: (num1, num2) => num1 - num2,
     multi: (num1, num2) => num1 * num2,
     div (num1, num2) {
-        if (num2 == 0) return "Error, please clear";
+        if (num2 === 0) return "Error, please clear";
         return num1 / num2;
     },
 
@@ -46,18 +46,18 @@ const calc = {
         let operatorPresent = stringOperator ? true : false;
         let num2Present = stringNum2 ? true : false;
         
-        if (stringNum1 == "Error, please clear" && input !== "C") {
+        if (stringNum1 === "Error, please clear" && input !== "C") {
             return;
         } else if (NUMBER_INPUTS.includes(input)) {
             if (!operatorPresent) {
-                if (input == "." && stringNum1.includes(".")) return;
+                if (input === "." && stringNum1.includes(".")) return;
                 if (stringNum1.length >= 20) return;
-                if (lastUsedInput == "=") stringNum1 = "";
+                if (lastUsedInput === "=") stringNum1 = "";
                 stringNum1 += input;
                 calc.updateDisplay(stringNum1);
                 return;
             } else {
-                if (input == "." && stringNum2.includes(".")) return;
+                if (input === "." && stringNum2.includes(".")) return;
                 if (stringNum2.length >= 20) return;
                 stringNum2 += input;
                 calc.updateDisplay(stringNum1, stringOperator, stringNum2);
@@ -77,7 +77,7 @@ const calc = {
                 calc.updateDisplay(stringNum1, stringOperator)
                 return;
             }
-        } else if (input == "=") {
+        } else if (input === "=") {
             if (num1Present && operatorPresent && num2Present) {
                 stringNum1 = calc.operate(stringNum1, stringOperator, stringNum2);
                 stringOperator = "";
@@ -85,13 +85,13 @@ const calc = {
                 calc.updateDisplay(stringNum1)
                 return;
             }
-        } else if (input == "C") {
+        } else if (input === "C") {
             stringNum1 = "";
             stringNum2 = "";
             stringOperator = "";
             calc.updateDisplay();
             return;
-        } else if (input == "←") {
+        } else if (input === "←") {
             if (num2Present) {
                 stringNum2 = stringNum2.slice(0, -1);
                 calc.updateDisplay(stringNum1, stringOperator, stringNum2);
